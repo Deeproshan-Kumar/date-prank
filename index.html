@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date Prank</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      h3 {
+        color: #000;
+      }
+
+      .gif {
+        height: 200px;
+        min-width: auto;
+        border-radius: 20px;
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        background: #ffd2ec;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+
+      .btn-group {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .btn {
+        width: 120px;
+        height: 48px;
+        background: #ffd2ec;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        text-transform: uppercase;
+        box-shadow: 0px 4px 16px fade(black, 20%);
+        outline: 0;
+        border: 2px solid #ff276f;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #ff276f;
+        color: #ffffff;
+      }
+
+      .floating {
+        --x: 0px;
+        --y: 0px;
+        transform: translate(var(--x), var(--y));
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main">
+      <img
+        src="bear-love.gif"
+        alt=""
+        class="gif"
+      />
+      <h3>Will you go on a date with me?</h3>
+      <div class="btn-group">
+        <button class="btn" id="yes">Yes</button>
+        <button class="btn floating" id="no">No</button>
+      </div>
+    </main>
+    <script>
+      var isAdded = false;
+      const maxHeight = document.querySelector(".main").clientHeight;
+      const maxWidth = document.querySelector(".main").clientWidth;
+
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - 120 - min + 20) + min);
+      }
+
+      document.querySelector("#no").addEventListener("click", () => {
+        document.querySelector(".gif").src = "bear-shocked.gif";
+        document.querySelector("h3").innerHTML =
+          "You are genius, you deserves my heart!";
+      });
+
+      document.querySelector("#yes").addEventListener("click", () => {
+        document.querySelector(".gif").src = "love-you-brown-bear.gif";
+        document.querySelector("h3").innerHTML = "Yayyy, when to go?";
+      });
+
+      const noBtn = document.querySelector("#no");
+      noBtn.addEventListener("mouseover", () => {
+        noBtn.style.setProperty(
+          "--x",
+          `${getRandomNumber(-maxWidth / 2 + 60, maxWidth / 2 - 60)}px`
+        );
+        noBtn.style.setProperty(
+          "--y",
+          `${getRandomNumber(-maxWidth / 2 + 60, maxHeight / 2 - 60)}px`
+        );
+      });
+
+    </script>
+  </body>
+</html>
